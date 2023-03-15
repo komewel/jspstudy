@@ -15,3 +15,38 @@
 	톰캣폴더 conf(환경설정 파일)
 		lib(라이브러리파일) jar가 많다
 		webapps -> ROOT(우리가 만든 파일을(만들어진곳) 배포하는곳)
+
+	이클립스 접속해서 파일 switchworkspace 들어가서 others 클릭
+	workspace jspstudy로 이름 바꿔주고 실행
+
+	서버 톰캣 등록하고 서버 시작하면 웹포트 번호 8080을 누가 쓴다고 
+	경고 창이 뜨는데 쓰는 주체는 oracle(oracle db라서 이짓을 하는거)이 쓰고 있다 
+	고로 톰캣을 바꾼다 (9090으로) 
+	
+	톰캣 conf폴더에 있는 설정이 이클립스에서 생긴 폴더에 설정이 복사해서 옮겨 간다
+	
+	server.xml에 들어가서 소스창으로 바꾼 다음에
+	63번 라인에 포트번호를 8080에서 9090으로 바꿔준다.
+
+	그리고 다시 서버시작 하면 정상 작동함(서버창에 stop에서started로 바뀐다)
+
+	window설정창 preference로 들어가서 general 들어가서 마지막 workspace에서 인코딩
+	utf-8로 바꾸고 마지막 web 창에서 css files, HTML files, JSP files 모두 utf-8
+	로 인코딩을 바꾼다.
+
+	window창에 가서 web browser창에 가서 chrome으로 바꿔준다.
+
+	server콘솔 옆에 있는 data source explorer 에서 database connection
+	우클릭 누르고 new 누르고 orecle 클릭 이름을 GDJ61 바꿔주고 oracle 접속
+	드라이버 잡아주기 옆에 벌레같이 생긴 버튼 클릭 oracle thin버전 11버전 클릭
+	옆에 자르 리스트 있는거 지우고 애드누르기 ojdbc6.jar 추가하기
+	마지막 탭가서 유저아이디는 GDJ61 비밀번호는 1111 3번째는 xe 두번째는 
+	@ 뒤에 localhost:1521:xe로 바꿔주기 확인 다음창에 비밀번호 기억하기 체크
+	하고 testconnection누르면 success 창뜨면 성공 마무리 확인(finish)
+
+	프로젝트이름이 나오고/
+	서블릿에 이름을 주소창 마지막에서 볼수 있다.(url mapping)
+	http(프로토콜)://localhost:포트번호(9090)/contextpath(프로젝트이름)/urlmapping(서블릿이름)
+
+	
+	
