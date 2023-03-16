@@ -15,17 +15,22 @@
 			if($('#id').val() == ''){
 				alert('아이디는 필수입니다.');
 				$('#id').focus();
-				event.preventDefault(); // submit 방지
-				return;					// 이벤트 리스너(함수) 종료
-			}else if($('#pw').val() == '' || $('#pw').val() != $('#pw2').val()){
-				alert('비밀번호를 확인하세요.');
-				event.preventDefault();
-				return;
+				event.preventDefault();  // submit 방지
+				return;                  // 이벤트 리스너(함수) 종료
 			}
+			
+			// 비밀번호 입력 체크
+			else if($('#pw').val() == '' || $('#pw').val() != $('#pw2').val()){
+				alert('비밀번호를 확인하세요.');
+				event.preventDefault();  // submit 방지
+				return;                  // 이벤트 리스너(함수) 종료
+			}
+			
 		});
+		
 	});
-
-	</script>
+	
+</script>
 </head>
 <body>
 

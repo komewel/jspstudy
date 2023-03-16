@@ -49,7 +49,9 @@ public class GugudanServlet extends HttpServlet {
 		} else {
 			out.println("alert('오답입니다.')");
 		}
-		out.println("history.back()");
+		// out.println("history.back()");  이전 화면으로 이동하기
+		// out.println("location.href='/01_Servlet/practice02/client1.html'");  // client1.html로 이동하기
+		out.println("location.href='/01_Servlet/practice02/client2.html'");  // client2.html로 이동하기
 		out.println("</script>");
 		out.flush();
 		out.close();
