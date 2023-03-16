@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="../resources/js/lib/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 
@@ -25,5 +26,65 @@
 <div>
 	<a href="/01_Servlet/GetServlet?model=냉장고&price=200">파라미터전송</a>
 </div>
+
+<!-- <form> 태그로 submit하기(파라미터 보내기) -->
+<div>
+	<form action="/01_Servlet/GetServlet">
+		<label for="model">모델명</label>
+		<input type="text" id="model" name="model" placeholder="모델명">  
+		<label for="price">가격</label>
+		<input type="text" id="price" name="price" placeholder="가격(원)"> 
+		<button type="submit">파라미터전송</button>
+		<!-- name속성에 값을 주면 파라미터로 인식을 한다(name에 의해서 파라미터값이 주어지는것이다.) name은 파라미터의 값이 되는것이고 id값은 프론트선에서 인식되는것이다 id값이랑 name 값을 동일한 값으로 줘도 둘이 영향을 안 받기 때문에 편하고 좋다-->
+	</form>
+	<!--<input type="text" name="maker" placeholder="제조사"> <form>내부에 포함되어 있지 않기 때문에 제기능을 못한다. -->
+</div>
+<!-- location.href 또는 open() 이용해서 파리미터 보내기 -->
+<div>
+	<button id="btn">파라미터전송</button>
+</div>
+<script>
+	$('#btn').on('click', function(event){
+		// location.href = '/01_Servlet/GetServlet?model=tv&price=100'; /* 누르면 이동하는 이벤트만 걸었음 */
+		open('/01_Servlet/GetServlet?model=tv&price=100');
+	})
+</script>
+<!-- 배열을 파라미터로 보내기 -->
+<div>
+	<form action="/01_Servlet/ArrayServlet">
+	<div>
+		<input type="text" name="tel" size="4" maxlength="3">
+		-
+		<input type="text" name="tel" size="4" maxlength="4">
+		-
+		<input type="text" name="tel" size="4" maxlength="4">
+	</div>
+	<div>
+		<input type="checkbox" name="hobbies" value="travel" id="travel">
+		<label for="travel">여행</label>
+		<input type="checkbox" name="hobbies" value="swim" id="swim">
+		<label for="swim">수영</label>
+		<input type="checkbox" name="hobbies" value="golf" id="golf">
+		<label for="golf">골프</label>
+	</div>
+		<button>배열전송</button>
+	</form>
+</div>
+
+<!--
+	POST 방식으로 요청
+	1. <form> 태그를 이용한 submit
+	2. $.ajax({})을 이용한 비동기 처리 요청
+	 
+  -->
+  <div>
+  	<form method="POST" action="/01_Servlet/PostServlet">
+  		<label for="model">모델명</label>
+  		<input type="text" id="model" name="name">
+  		<label for="price">가격</label>
+  		<input type="text" id="price" name="price">
+  		<input type="submit" value="파라미터전송">
+  	</form> 
+  </div>
 </body>
 </html>

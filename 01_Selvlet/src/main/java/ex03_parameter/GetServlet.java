@@ -1,6 +1,7 @@
 package ex03_parameter;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,15 +28,15 @@ public class GetServlet extends HttpServlet {
 		*/
 		
 		// 요청 정보를 UTF-8로 인코딩한다.
-		request.setCharacterEncoding("UTF-8");
+ 		request.setCharacterEncoding("UTF-8"); 
 		
-		// 요청 파라미터를 꺼낸다.
+		// 요청 파라미터를 꺼낸다
 		String model = request.getParameter("model");
 		String strPrice = request.getParameter("price");
 		
 		// 요청 파라미터에 null 처리를 한다.
 		int Price = 0;
-		if(strPrice != null) {  
+		if(strPrice != null) {  // null이 아닌 경우에만 string으로 받은걸 int 처리해주는 과정이 필요하다.
 			Price = Integer.parseInt(strPrice);  // "200"-> 200
 		}
 		
