@@ -17,10 +17,41 @@ next누르다보면 체크하는 페이지에서 init, service, dopost, doget �
 
 서버xml(이클립스에서) 접속해서 포트번호 9090으로 바꾸는데 원본에는 영향이 안간다
 
+(back-end)
 Redirect, ex) 삽입 요청이 되었으면 목록보기요청도 같이 자연스럽게(둘이상에 과정이 동시에
-들어가는거) 실행되는거
+들어가는거) 실행되는거, 다른 요청이 *두번* 발생하는것을 의미한다.
+파라미터값은 두번째요청에서는 끊긴다(최종 목적지에서는 끊어짐)
+, db에서 많이 쓰는 방법이다 db에서 forward를 쓰면 insert가 두번된다
+내생각엔 파라미터가 두번 요청되어서 자동으로
 
-forward, 
+forward, ex) 요청은 *한번* 이지만 내부이동(내부적으로 정보전달)으로 처음 요청이란 다른
+곳에서 응답을 받는것, 파라미터값을따로 줄 필요는 없다.
+
+a태그로 파라미터 보내는법
+<a href=/ContextPath/Urlmapping?parm1=value1&param2=value2>
+doGet()
+String param1 = request.getParameter("param1");
+String param2 = request.getParameter("param2");
+-----------------------------------------------------------------------------
+location.href=/ContextPath/Urlmapping?param1=value1&param2=value2
+doGet()
+String param1 = request.getParameter("param1");
+String param2 = request.getParameter("param2");
+---------------------------------------------------------------------------------
+<form action=/ContextPath/Urlmapping>
+	<input name="param1">
+<input name="param1">
+<input name="param2">
+<button><input type="submit">
+</form>
+<form method=get> doGet()
+<form method=post> doPost() -> doGet()
+String param1 = request.getParameter("param1");
+String param2 = request.getParameter("param2");
+
+--------------------------------------------------------------------------------------
+.metadata -> plugin -> org.eclipse.wst.server.core -> 
+tmp1 -> wtpwebapps 들어가면 웹 컴포넌트가 있다, 이과정이 서버경로가 되는것이다.
 
 
 

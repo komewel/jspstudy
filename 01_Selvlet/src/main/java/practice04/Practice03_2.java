@@ -1,4 +1,4 @@
-package ex02_urlmapping;
+package practice04;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/*
- URLMapping 수정하는 방법
- 	방법1. 서블릿을 열고 @WebServlet 애너테이션을 수정한다.
- 	
- 	방법2. web.xml을 열고 <servlet> 태그와 <servlet-mapping> 태그를 추가한다.
-*/
+@WebServlet("/Practice03_2")
 
-@WebServlet("/HiServlet") 	// urlmapping 값이 변한걸 확인 가능
-							// @WebServlet({"/hi", "/hello"})처럼 2개 이상의 URLMapping 지정이 가능하다.(배열로)
-public class HiServlet extends HttpServlet {
+public class Practice03_2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String model = request.getParameter("model");
+		System.out.println(model);						// 넘어온 파라미터 값을 정상적으로 보내졌는지 확인해보는 과정
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
