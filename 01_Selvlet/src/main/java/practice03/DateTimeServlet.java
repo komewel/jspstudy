@@ -42,6 +42,9 @@ public class DateTimeServlet extends HttpServlet {
 		out.print("<script>");
 		out.print("alert('요청 결과는 " + result + " 입니다.')");
 		out.print("</script>");
+		out.print("<script>");
+		out.println("history.back()");
+		out.print("</script>");
 		out.flush();
 		out.close();
 		

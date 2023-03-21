@@ -57,8 +57,11 @@ public class ResponseServlet extends HttpServlet {
 		out.println("<h1>가격: " + price + "</h1>");
 		out.println("</body>");
 		out.println("</html>");
+		out.println("안녕");
 		out.flush();  // (혹시) 출력 스트림에 남아 있는 데이터를 모두 내보내기
 		out.close();  // 출력 스트림에서는 close를 꼭해줘야 한다 , 위코드처럼 힘든 코드를 안쓸려고 만들어진 jsp는 html에서 자바를 실행이 가능하게 해준다.
+	
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

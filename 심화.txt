@@ -1,0 +1,23 @@
+isEmpty() : request문에서 검사하거나 처리 할때 쓰는 특별한 메소드
+
+파라미터를 배열로 가져올때가 있다, String으로 가져온다는건 변함 없고 
+여러가지 값을 처리하기 위해 다른 메소드를 쓴다.
+String[] ~~ = request.getParameterValues("name 속성이름을 쓰는건 변함 없는데 html문서에 공통된 
+name 속성값이 많을것이다 하나로 묶어놓고 값이 많아지면 배열로 인식시키는 것")
+
+redirect
+핵심은 요청을 두번 한다는 것이다 
+두번 요청이 들어갈 때는 첫번째에서 두번째로 넘겨줄 때 파라미터값을 추가로
+response.sendRedirect("/01_Servlet/RedirectServlet2?model=TV"); 이런 식으로
+?뒤에 파라미터 값을 넘겨 주어야 정상 인식되고 이 과정이 주소창에도 다 보인다
+
+forward
+핵심은 요청을 한번만 하는 대신 이과정이 서버 내부에서 진행되므로 주소창으로 이 과정을 
+볼수가 없다는 것이다, 따로 파라미터값을 작성해서 넘겨 주지 않아도 서버 내부에서 이뤄지는 과정이라서
+상관없다
+
+예를 들자면
+request.getRequestDispatcher("/ForwardServlet2").forward(request, response);
+포워드가 다른 점은 넘겨주는 과정을 response가 아니라 request가 한다는 점이다 
+redirect랑 달리 
+

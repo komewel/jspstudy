@@ -1,7 +1,11 @@
 package practice06;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,31 +22,36 @@ public class CreateFileServlet extends HttpServlet {
 		// IOException은 여기서 처리해준다 따로 try catch문을 안해주는 이유다
 		
 		/*
-		  1. 파일 만들기
-		  	1) 파일명 : yyyy-mm-dd-작성자-제목.txt
-		  	2) 파일경로 : RealPath에 storage 디렉터리를 만들어서 저장
-		  	3) 파일내용 : 내용 그대로 추가	
+			1. 파일 만들기
+				1) 파일명 : yyyy-mm-dd-작성자-제목.txt
+				2) 파일경로 : RealPath에 storage 디렉터리를 만들어서 저장
+				3) 파일내용 : 내용 그대로 추가
 		*/
 		
-		/*
-		  2. FileResponseServlet으로 리다이렉트
-		     파일명 전달
-		 */
-		File dir = new File("C:" + File.separator + "storage");  
-		
-		if(dir.exists() == false) {
-			dir.mkdirs();
-		} else {
-			dir.delete(); 
-		}
-		
-		
 		request.setCharacterEncoding("UTF-8");
+		
 		String writer = request.getParameter("writer");
 		String title = request.getParameter("title");
-		response.setContentType("text/html; charset=UTF-8");
-		response.sendRedirect("/01_Servlet/FileResponseServlet?title=" + title);
+		String content = request.getParameter("content");
 		
+		String filename = LocalDate.now().toString() + "-" + writer + "-" + title + ".txt";
+		File dir = new File(request.getServletContext().getRealPath("storage"));
+		if(dir.exists() == false) {
+			dir.mkdirs();
+		}
+		
+		File file = new File(dir, filename);
+		BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+		bw.write(content);
+		bw.flush();
+		bw.close();
+		
+		/*
+			2. FileResponseServlet으로 리다이렉트
+				파일명 전달
+		*/
+		response.sendRedirect("/01_Servlet/FileResponseServlet?filename=" + URLEncoder.encode(filename, "UTF-8"));
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

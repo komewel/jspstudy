@@ -1,0 +1,52 @@
+1. String.format(%02d) : 문자열 화 시켜서  %: 명령의시작
+						     0: 채워질 문자 종류
+					   	     2: 총 자리수
+						    d: 10진수(정수)	
+
+
+2. equals() : ()안에 들어가는 값과 비교하는 값이 같냐 
+
+
+3. ? a : b  :  true면 a 아니면 b
+
+
+4. 이벤트 리스너(이벤트 작동시 동작할 함수)를 선언함수(미리 만들어진)로 사용될시 ()메소드 기호는 안 붙인다
+
+
+5. out.println("history.back()"); 은 이전 페이지로 돌려준다
+     근데 내가 쓸때는 새로운 스크립트문에 또 씌워야 했다.
+
+
+6. indexOf() 문자열의 ()안에 값이 포함된 위치를 출력해준다
+
+
+7. substring() 그냥 하나만 쓰면 그 숫자 뒤에 값만 출력 두개를,
+   이것으로 구분해서 쓰면 어디서부터 여기까지 
+
+
+8. URLEncoder.encode(~~, "UTF-8") ~~를 UTF-8 처리화 해주는 메소드다.
+
+
+9. File dir = new File();
+   if(dir.exists() == false) {
+   dir.mkdirs();
+   }  
+
+   파일 경로를 설정하고 없으면 만들어준다 () 안에 폴더명을 정해서 만들어 줄 수 있다.
+
+10. File file = new File(dir, filename);  () 안에 앞에가 경로 뒤가 파일명
+    BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+     버퍼드 롸이터를 써서 성능을 높여 쓴다
+
+
+
+practice01은 네이버 로그인 내가 입력한 개인정보를 볼 수 있었다
+
+practice02은 계산기인데 무작위 숫자를 제공해서 문제를 내준다
+
+practice03은 현재시간과 현재날짜를 요청하면 alert로 알려준다
+
+practice04는 리다이렉트 할때 파라미터값이 어떻게 넘어가는지 알려준다
+
+practice05는 리다이렉트 할때 파라미터값이 한글일때 어떻게 처리해야 하는지 알려준다
+

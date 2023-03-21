@@ -1,0 +1,60 @@
+servlet
+
+웹화면으로 결과물을 출력해주는 클래스이다 
+HttpServlet 클래스를 상속 받는다
+tomcat(was)에 의해서 실행된다
+
+URL형식
+
+프로토콜://호스트:포트번호/Contextpath(프로젝트이름)/URLMapping
+
+
+오버라이드 된 
+@WebServlet() 안에 URLMapping 값을 넣음으로써 무엇이랑 연결되는지 정해줄 수 있다.
+
+가장먼저 생성자가 호출된다(클래스이기 때문에, 지워도 괜찮다) 
+그 뒤로 init()(서블릿의 설정을 담당한다) 호출 뒤 service()가 호출 
+근데 없다면 doGET 메소드와 doPOST() 메소드가 자동으로 호출된다 
+
+doGET() 이란 GET 방식의 요청을 처리하는 메소드이다
+
+doPOST() 이란 POST 방식의 요청을 처리하는 메소드인데, 암호화(아이디, 비밀번호)를 거친다고 보면된다 근데 
+어짜피 doPOST()로 처리한다 해도 암호화만 풀고 실상 일은 doGET()이 한다.  
+
+
+통신으로 보자면 크게 정보 요청(request)과 정보 응답(response)이 있는데
+
+request
+
+여기서 중요한건 형식이 중요하다
+request.setCharacterEncoding("UTF-8"); 
+
+전송받은 파라미터 값은 모두 String값이다 
+String ~~ = request.getParameter(태그 안에 있는 attribute값중에 하나인 name값을 인식해준다")
+빈문자열 검사하는 메소드가 있다 .isEmpty() 검사 할 때 요긴하게 써먹으면 된다.
+
+
+response
+
+response는 응답을 해주는 객체이다
+
+응답 
+		 	
+1. 서버 -> 클라이언트로 보내는 것이 응답(Response)이다
+2. HttpServletResponse 클래스가 응답을 처리한다.
+3. 어떤 MIME(html, json... 등등 응답을 뭘로 해야하는지) 타입으로 응답 할 것인지 결정해야한다. 반환타입이랑 비슷함
+	1) HTML : text/html	     (태그를 만들어서 반환하는 경우)
+	2) XML  : application/xml    (ajax 응답이 XML인 경우)
+	3) JSON : application/json   (ajax 응답이 JSON인 경우)
+
+예를 들어 응답하는 형식은 이렇게 작성한다.
+response.setContentType("text/html; charset=UTF-8"); 
+
+화면출력하는 메소드는 
+reponse.getWriter().append(), write(), print(), println()
+여기까지가 내보내주는 빨대가 꽃힌거, 뒤에가 정보를 보내주는 기능을 하는거
+
+근데 PrintWriter out = response.getWriter() 선언하고
+out.println(원하는 내용) 이렇게 쓰는게 더 좋다
+
+그냥 system.out.println()이랑 비슷하다고 보면된다 그게 크롬으로 나오는거 뿐이지
