@@ -33,13 +33,12 @@ public class JSONServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		try {
-		// 요청 인코딩
-		request.setCharacterEncoding("UTF-8");
 		// 요청 파라미터
 		String name = request.getParameter("name");
 		String strAge = request.getParameter("age");
+		try {
+		// 요청 인코딩
+		request.setCharacterEncoding("UTF-8");
 		int age = 0;
 		if(strAge != null && strAge.isEmpty() == false) {
 			age = Integer.parseInt(strAge);
@@ -74,13 +73,12 @@ public class JSONServlet extends HttpServlet {
 		out.close();				 // 오브젝트를 그냥 사용하면 라이브러리가 좀만 변경되면 오류가 발생한다 표준형식으로 맞춰서 사용해야한다.
 									 // 원래는 JSON.parse(resData) 처럼 제이슨화를 시켜야지 사용할수 있는데 여기선 생략 가능한 이유는 라이브러리가 알아서 기능을 해준다.
 		}catch(RuntimeException e){
-			String name = request.getParameter("name");
 			response.setContentType("application/json; charset=UTF-8"); 
 			PrintWriter out = response.getWriter();
 			if(e.getMessage().equals(name + "은 잘못된 이름입니다.")) {
 				response.setStatus(600);
 				out.println(e.getMessage());
-			}else {
+			}else{
 				response.setStatus(601);
 				out.println(e.getMessage());
 			}
