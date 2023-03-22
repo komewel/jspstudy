@@ -31,8 +31,6 @@ request.setCharacterEncoding("UTF-8");
 
 전송받은 파라미터 값은 모두 String값이다 
 String ~~ = request.getParameter(태그 안에 있는 attribute값중에 하나인 name값을 인식해준다")
-빈문자열 검사하는 메소드가 있다 .isEmpty() 검사 할 때 요긴하게 써먹으면 된다.
-
 
 response
 

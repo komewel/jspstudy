@@ -1,5 +1,3 @@
-isEmpty() : request문에서 검사하거나 처리 할때 쓰는 특별한 메소드
-
 파라미터를 배열로 가져올때가 있다, String으로 가져온다는건 변함 없고 
 여러가지 값을 처리하기 위해 다른 메소드를 쓴다.
 String[] ~~ = request.getParameterValues("name 속성이름을 쓰는건 변함 없는데 html문서에 공통된 
