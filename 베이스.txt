@@ -56,3 +56,9 @@ reponse.getWriter().append(), write(), print(), println()
 out.println(원하는 내용) 이렇게 쓰는게 더 좋다
 
 그냥 system.out.println()이랑 비슷하다고 보면된다 그게 크롬으로 나오는거 뿐이지
+
+jquery.com 들어가서 ui홈페이지 들어가서 다운로드 들가서 1.13.2 다운로드 받으면 되는데 위에 stable 
+이라고 써져 있는거 누르면 다운로드 됨
+
+압축풀고 webapp에서 resources 파일에 포함시키면됨
+

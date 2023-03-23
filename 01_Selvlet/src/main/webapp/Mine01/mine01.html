@@ -5,42 +5,18 @@
 <title>Insert title here</title>
 <script src="resources/js/lib/jquery-3.6.4.min.js"></script>
 <script>
-$(function(){
-	$('#aa').on('submit', function(){
-		
-	})
-
-})
-
-
-
 </script>
 </head>
 <body>
-<form action="/01_Servlet/mine1">
-	<label for="id">아이디
-	<br>
-	<input type="text" id="id" name="id" placeholder="아이디를 입력해주세요">@naver.com
-	</label>
-	<br><br>
-	<label for="pw">비밀번호
-	<br>
-	<input type="password" name="pw" id="pw" placeholder="비밀번호를 입력해주세요">
-	</label>
-	<br><br>
-	<label for="pw2">비밀번호 재확인
-	<br>
-	<input type="pw2" name="pw2" placeholder="비밀번호를 재입력 해주세요">
-	</label>
-	<br><br>
-	<label>
-	
-	
-	</label>
-	
-
-
-</form>
-
+		 <div>
+	 	<form id="frm_book">
+	 		<input type="text" name="title" placeholder="제목">
+	 		<input type="text" name="author" placeholder="저자">
+	 		<input type="text" name="price" placeholder="가격">
+	 		<input type="button" id="btn3" value="XML요청">
+	 	</form>
+	 	<div id="content3"></div>
+	 </div>
+	 
 </body>
 </html>

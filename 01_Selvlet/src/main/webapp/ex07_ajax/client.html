@@ -49,18 +49,71 @@
 				url: '/01_Servlet/JSONServlet',
 				data: $('#frm_person').serialize(),// form 내부의 모든 입력 요소(name 속성이 파라미터로 인식된다.), serialize: 직렬화 줄세우다라는 뜻(추천)
 												   // JSON 에서 사용하는 특별한 메소드	
+												   // name속성을 가진 요소들이 한번에 정렬되서 넘어간다.(name속성을 기반으로 동작된다.)
 				/* 응답 */
 				datatype: 'json',     //response.setContentType("application/json; charset=UTF-8"); 와 상응한다.
 				success: (resData)=>{ //obj.toString 이랑 상응한다. // resData = {"name":"마돈나", "age":50}
 					$('#content2').append($('<div>').text(resData.name));
 					$('#content2').append($('<div>').text(resData.age));
 				},
-				error: (jqXHR)=>{
-					$('#content2').append($('<div>').text('status : ' + jqXHR.status));
-					$('#content2').append($('<div>').text('responseText : ' + jqXHR.responseText));
+				error: (jqXHR)=>{  // 서블렛에 캣치블락에서 생긴일은 에러에서 받는다
+					$('#content2').append($('<div>').text(jqXHR.status)); //response.setStatus(e.getErrorCode());는 여기서
+					$('#content2').append($('<div>').text(jqXHR.responseText)); //response.getWriter().println(e.getMessage());는 여기서
 				}
 			})
 		})
 	</script>
+	
+	 <div>
+	 	<form id="frm_book">
+	 		<input type="text" name="title" placeholder="제목">
+	 		<input type="text" name="author" placeholder="저자">
+	 		<input type="text" name="price" placeholder="가격">
+	 		<input type="button" id="btn3" value="XML요청">
+	 	</form>
+	 	<div id="content3"></div>
+	 </div>
+	 <script>
+	 
+	 // $.ajax는 client에서 모두 처리하는 방식인것 같다
+	 	$('#btn3').on('click', function(){
+	 		$('#content3').empty();
+	 		$.ajax({
+	 			/* 요청 */
+	 			type: 'get',
+	 			url: '/01_Servlet/XMLServlet',
+	 			data: $('#frm_book').serialize(),
+	 			/* 응답 */
+	 			datatype: 'xml',
+	 			success: (resData)=>{
+	 				var ul = $('<ul>'); // 이렇게 따로 변수 처리하면 ul 태그밑에 못넣는걸 넣게 해줄수 있다 
+	 				ul.append($('<li>').text('제목: ' + $(resData).find('title').text())); // xml화 된 resData를 jQuery화 시켜서 응용하는것
+	 				ul.append($('<li>').text('저자: ' + $(resData).find('author').text()));
+					ul.append($('<li>').text('가격 : ' + $(resData).find('price').text() + '원'));
+					$('#content3').append(ul);
+	 			},
+	 			error: (jqXHR)=>{
+	 				$('#content3').append($('<div>').text(jqXHR.status));
+	 				$('#content3').append($('<div>').text(jqXHR.responseText));
+	 			}
+	 		})
+	 	})
+	 </script>
+	 <script>
+	 	$('#').on('click', function(){
+	 		$('#').empty();
+	 		$.ajax({
+	 			type: 'get',
+	 			url: '',
+	 			data: $('#').serialize(),
+	 			datatype: 'xml',
+	 			success: (resData)=>{
+	 				$.each
+	 			}
+	 			
+	 		})
+	 	})
+	 
+	 </script>
 </body>
 </html>

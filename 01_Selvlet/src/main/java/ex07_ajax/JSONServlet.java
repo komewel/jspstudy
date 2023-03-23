@@ -33,17 +33,24 @@ public class JSONServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 요청 파라미터
-		String name = request.getParameter("name");
-		String strAge = request.getParameter("age");
 		try {
 		// 요청 인코딩
 		request.setCharacterEncoding("UTF-8");
+		// 요청 파라미터
+		String name = request.getParameter("name");
+		String strAge = request.getParameter("age");
 		int age = 0;
 		if(strAge != null && strAge.isEmpty() == false) {
 			age = Integer.parseInt(strAge);
 		}
-		
+		// 이름 예외 처리
+		if(name.length() > 6 || name.length() < 2) {
+			throw new NameHandleException(name + "은(는) 잘못된 이름입니다.", 601);
+		}
+		// 나이 예외 처리
+		if(age < 0 || age > 100) {
+			throw new AgeHandleException(age + "살은 잘못된 나이입니다", 600);
+		}
 		// 응답할 JSON 데이터
 		JSONObject obj = new JSONObject();
 		obj.put("name", name);
@@ -58,35 +65,23 @@ public class JSONServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		// 출력
-		if(age > 100 || age < 0) {
-			throw new RuntimeException(age + "살은 잘못된 나이입니다.");
-		}else {
-			
-		}
-		if(name.length() > 6 || name.length() < 2) {
-			throw new RuntimeException(name + "은 잘못된 이름입니다.");
-		}else {
-			
-		}
 		out.println(obj.toString()); // 텍스트 형식으로 된 JSON 데이터를 응답한다, 실제로 응답이 이루어질 때 문자열을 뜻하는 텍스트로 이루어졌지만 
-		out.flush();				 // 텍스트로 이루어졌지만, 반환타입이 json이라고 명시되면 json화(''가 제거 되면서 객체의 역할을 수행한다)를 시켜서 동작한다
+		out.flush();				 // 원래는 request는 (스트링)텍스트로 이루어졌지만, 반환타입이 json이라고 명시되면 json화(''가 제거 되면서 객체의 역할을 수행한다)를 시켜서 동작한다
 		out.close();				 // 오브젝트를 그냥 사용하면 라이브러리가 좀만 변경되면 오류가 발생한다 표준형식으로 맞춰서 사용해야한다.
 									 // 원래는 JSON.parse(resData) 처럼 제이슨화를 시켜야지 사용할수 있는데 여기선 생략 가능한 이유는 라이브러리가 알아서 기능을 해준다.
-		}catch(RuntimeException e){
-			response.setContentType("application/json; charset=UTF-8"); 
-			PrintWriter out = response.getWriter();
-			if(e.getMessage().equals(name + "은 잘못된 이름입니다.")) {
-				response.setStatus(600);
-				out.println(e.getMessage());
-			}else{
-				response.setStatus(601);
-				out.println(e.getMessage());
-			}
-		out.flush();
-		out.close();
+		}catch(MyHandleException e){ // e.getmessage()랑 e.getErrorCode()를 꺼내서 쓸수 있다.
+			
+			response.setContentType("text/plain; charset=UTF-8"); // application/json datatype: json을 받을때 쓰는 형식이다.
+			
+			response.setStatus(e.getErrorCode());
+			
+			response.getWriter().println(e.getMessage());
+			
+		}
 	}
 		
-	}
+
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

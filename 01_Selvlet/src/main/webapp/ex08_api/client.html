@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../resources/js/lib/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+	<div>
+		<h1>시도별 실시간 측정정보 조회</h1>
+		<form id="frm1">
+			<select name="sidoName">
+				<option value="전국">전국</option>
+				<option value="서울">서울</option>
+				<option value="부산">부산</option>
+				<option value="대구">대구</option>
+				<option value="인천">인천</option>
+			</select>
+			<select name="returnType" id="returnType">
+				<option value="xml">XML</option>
+				<option value="json">JSON</option>
+			</select>
+			<input type="button" id="btn1" value="조회하기">
+		</form>
+		<div id="content1"></div>
+	</div>
+	<script>
+	
+		$('#btn1').on('click', function(){
+			$('#content1').empty();
+			$.ajax({
+				type: 'get',
+				url: '/01_Servlet/AirKoreaApiServlet',
+				data: $('#frm1').serialize(),
+				dataType: $('#returnType').val(),
+				success: (resData)=>{
+					switch($('#returnType').val()){
+					case "xml":
+						fnXml(resData);
+						break;
+					case "json":
+						fnJson(resData);
+						break;
+					}
+				}
+			})  // ajax
+		})  // click
+		
+		function fnXml(resData){
+			$.each($(resData).find('item'), (i, element)=>{
+				$('#content1').append($(element).find('stationName').text() + '<br>');
+			})
+		}
+		
+		function fnJson(resData){
+			$.each(resData.response.body.items, (i, element)=>{
+				$('#content1').append(element.stationName + '<br>'); // append는 그냥 <br>을 붙여도 인식을 제대로 하는구나, 제이슨은 객체화 꺼풀을 벗겨야 한다는 생각을 못했음
+			})
+		}
+		
+	</script>
+	<!-- jquery-ui 활용을 위한 css와 js 포함(head 태그에 포함하는 것이 추천) -->
+	<link rel="stylesheet" href="../resources/jquery-ui-1.13.2/jquery-ui.css">
+	<script src="../resources/jquery-ui-1.13.2/jquery-ui.js"></script>
+	<div>
+		<form id="frm2">
+		<label for="schDate">검색일자</label>
+			<input type="text" id="schDate" name="schDate">
+		</form>
+	</div>
+	<script>
+		$('#schDate').datepicker({
+			dateFormat: 'yymmdd'	 // 날짜를 중간에 / 를 없애야 함, dateFormat을 이용하면 가능함(jquery-ui홈페이지에 기능이 소개되어있다)
+		}); 
+	</script>
+</body>
+</html>
