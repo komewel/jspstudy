@@ -50,7 +50,7 @@ public class AirportServlet extends HttpServlet {
 		con.setRequestMethod("GET");
 		
 		// Content-Type
-		con.setRequestProperty("Content-Type", "application/xml; charset=UTF-8");
+		con.setRequestProperty("Content-Type", "application/xml; charset=UTF-8"); 
 		
 		// 입력 스트림 생성
 		BufferedReader reader = null;
