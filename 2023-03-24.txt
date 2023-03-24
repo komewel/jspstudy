@@ -1,0 +1,10 @@
+HttpServletRequest
+1회용 저장
+
+
+
+HttpSession
+브라우저를 닫기 전까진 저장이 되어있다
+
+
+HttpServletRequest와 session은 서로 다른 저장소이기 때문에 변수이름이 같아도 상관이없음
