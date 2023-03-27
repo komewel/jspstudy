@@ -94,3 +94,5 @@ http://servlets.com 접속 COS File Upload Library(메뉴 3번째) 접속 가장
 
 스크립트릿(scriptlet) : 자바 코드를 인식해주는 태그 
 
+부트스트랩 jsp 코드 따올수 있는 사이트
+
