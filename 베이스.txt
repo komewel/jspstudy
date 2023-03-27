@@ -84,5 +84,13 @@ ex. 로그인(웹브라우저 닫기 전 까지는 계속 유지된다)
 
 팝업창 같이 오늘 하루종일 열지 않기 아이디 기억하기 등등 이런 기능은 서버에서 해주는게 아니라 개인 클라이언트에서 기억하는것 
 
+http://servlets.com 접속 COS File Upload Library(메뉴 3번째) 접속 가장 하단 cos-22.05.zip 
+다운로드 
 
+01Servlet 파일 우클릭 new -> dynamic web project 02_Jsp 제목 설정하고 마지막 3번째꺼 체크하고 만들기 만들어진 새로운 폴더 우클릭 properties 들어가서 java build path랑 java compiler 둘다 들어가서 11버전으로 바꾸는데 java build path는 module path 아래 있는 자바 편집(edit) 할때 11버전으로
+바꾸기  
+
+새로 생긴 폴더에서 webapp에서 우클릿 jsp파일 만들어 쓰면된다
+
+스크립트릿(scriptlet) : 자바 코드를 인식해주는 태그 
 
