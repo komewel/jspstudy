@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html></html>
 <head>
 <meta charset="UTF-8">
 <%
@@ -11,25 +11,9 @@
 	String title = opt.orElse("환영합니다");
 %>
 <title><%=title%></title>
-	<style>
-		nav ul {
-			display: flex;
-			list-style-type: none; 
-		}
-		nav ul li {
-			width: 100px;
-			height: 30px;
-			text-align: center;
-			line-height: 30px;
-		}
-		nav ul li a {
-			text-decoration: none;
-			color: #181818;
-			display: block;
-			width: 100%;
-			height: 100%;
-		}
-	</style>
+	<%-- request.getContextPath() == /02_Jsp ,/02_Jsp여기를 참조해서주소창에 값은 /02_Jsp로 나오지만 실제로는 webapp이 Contextpath로 인식된다 --%> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/header.css">
+<script src="<%=request.getContextPath()%>/resource/js/lib/jquery-3.6.4.min.js"></script> <%-- Contextpath가 변수 처리되서 설령 null이 나온다해도 알아서 처리된다. --%>
 </head>
 <body>
 	
