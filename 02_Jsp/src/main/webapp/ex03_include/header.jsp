@@ -2,18 +2,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html></html>
+<html>
 <head>
 <meta charset="UTF-8">
 <%
 	request.setCharacterEncoding("UTF-8");
-	Optional<String> opt = Optional.ofNullable(request.getParameter("title"));
+	Optional<String> opt = Optional.ofNullable(request.getParameter("title")); 
+	// null처리를 저장하기 위한 특별한 객체 선언을 이렇게 하고 따로 변수를 준다
+	// 확인결과 null이라도 오류가 안뜬다
 	String title = opt.orElse("환영합니다");
 %>
 <title><%=title%></title>
-	<%-- request.getContextPath() == /02_Jsp ,/02_Jsp여기를 참조해서주소창에 값은 /02_Jsp로 나오지만 실제로는 webapp이 Contextpath로 인식된다 --%> 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/header.css">
-<script src="<%=request.getContextPath()%>/resource/js/lib/jquery-3.6.4.min.js"></script> <%-- Contextpath가 변수 처리되서 설령 null이 나온다해도 알아서 처리된다. --%>
+<%-- request.getContextPath() == /02_Jsp --%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/header.css">
+<script src="<%=request.getContextPath()%>/resources/js/lib/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 	
@@ -24,6 +26,5 @@
 			<li><a href="body3.jsp">body3</a></li>
 		</ul>
 	</nav>
-	
+
 	<hr>
-	

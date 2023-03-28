@@ -8,9 +8,9 @@
 </head>
 <body>
 
-
 	<%
 		response.sendRedirect(request.getContextPath() + "/ex02_builtin_object/response/response2.jsp");
 	%>
+
 </body>
 </html>
