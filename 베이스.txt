@@ -96,3 +96,10 @@ http://servlets.com 접속 COS File Upload Library(메뉴 3번째) 접속 가장
 
 부트스트랩 jsp 코드 따올수 있는 사이트
 
+ 톰캣 들어가서 Taglibs 들어가서 
+Impl:
+taglibs-standard-impl-1.2.5.jar (pgp, sha512)
+Spec:
+taglibs-standard-spec-1.2.5.jar (pgp, sha512)
+이거 두개 다운받으면 된다.
+

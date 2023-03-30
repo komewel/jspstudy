@@ -14,7 +14,9 @@
 %>
 <title><%=title%></title>
 <%-- request.getContextPath() == /02_Jsp --%>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/header.css">
+<%-- 외부 정적 파일(css, js)을 포함할 땐 매번 경로가 변할 수 있도록 처리한다. 경로가 변해야 캐싱한 내용을 사용하지 않고 외부 파일을 읽는다. --%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/header.css?dt=<%=System.currentTimeMillis()%>">
+<%-- css파일이나 개별 파일을 따로 둘때는 주소창이 달라져야지 파일이 그걸인식하고 달라진 값을 인식하고 불러오는데 파라미터값을 따로 주면 편한데 대표적으로 현재시간이나 난수가 있다--%>
 <script src="<%=request.getContextPath()%>/resources/js/lib/jquery-3.6.4.min.js"></script>
 </head>
 <body>
