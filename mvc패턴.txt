@@ -1,0 +1,77 @@
+src는 자바 소스코드가 저장되는 곳이다.
+
+src/main/java 가 실질적으로 자바 소스코드가 인식이 가능한 형태로 변경되어 컴파일(실행)되는곳이다.
+
+리소스파일이 소스파일보다 한층 더 윗개념이라고 보면된다. 
+
+model 1 은 Jsp에서 한곳에서 코드를 다 짜는데 분할이 안되서 비효율적이다.
+디자이너와 개발자 모두 Jsp 를 사용하기 때문에 각각의 코드가 섞이므로
+유지보수가 어렵고 코드 재사용이 어려움
+
+model 2(= mvc패턴) 업무 분할이 가능해 유지보수에 쉽다는 점이 있지만 코드 짜기가 어렵다고 한다.
+
+					 	      ㅡ Java Class(model, 비즈니스 로직)		
+html -> Servlet(Controller,요청 처리)  ㅡㅣ
+	  				 		ㅡ Jsp(view, 화면 처리)
+ 
+jsp 파일에서 일을 주고 서블렛에서get에서 받고 클래스로 일을 계속넘긴다, 자기가 처리하지 않고
+다른 자바파일에 넘긴다.
+
+db에서 select는 forward를 이용 
+	나머지 기능은 redirect(간단한 이동에서 자주 쓴다, 꼭 redirect 코드가 있어야만 redirect는 아니다 
+	location이 redirect이다, 모든 요청을 각각의 servlet이 처리해주고 있다, 원래는 하나의 Servlset이 
+	다 처리해줘야 하는거다
+	진정한 의미의 mvc패턴이다.)
+
+mvc는 3가지 형태로 구분하여 개발하는 방법이다(application은 저장하는 방법 중에 하나인데 서버가 끝나야지만 즉 아예 모든게
+끝나야지만 사라지는 저장 방법이다, 구동할때는 프로젝트 자체를 run 시킨다 이걸로 미루어 보아 기능이 합쳐지는거다 ) 
+
+model은 어플리케이션이 *무엇을* 할것인지를 정의한다.
+
+controller는 model이  *어떻게* 처리할지를 알려주는 역할을 한다.
+
+view 는 		  *화면에 무엇인가* 를 보여주기 위한 역할을 합니다.(그렇지만 보여주는 역할은 아니고
+어떤걸 뿌려줄지 정해주는 역할만 해준다) 
+
+하나의 Servlet이 어떻게 다수의 요청을 한번에 처리할 것인가??
+
+.do 라는 요청이 오면 하나의 Servlet에서 처리한다 하나의 Servlet에서 여러가지 서비스를 구성해 
+요청한 객체가 누구냐에 따라 다른 서비스를 구동시킨다고 보면 된다
+하나의 메소드가 어떻게 다른 서비스를 구현하냐 같은 서블렛에서
+
+인터페이스와 추상메소드를 써야
+하나의 메소드로 다수의 기능을 구현할 수 있다.
+본문이 없는 이름만 있는 껍데기만 있는 메소드라서 
+조건식으로 if나 switch를 써서 따로 본문만 추가시켜서 여러가지 기능을 구현할 수 있다.
+Parent service = new AgeService();
+Parent service = new TodayService();
+
+interface Parent {
+	public String execute(request, response); // 추상메소드: 본문이 없는 메소드
+}
+class AgeService implement Parent{
+	@Override
+	public String execute (request, response) { // 부모 메소드를 불러와서 본문을 따로 작성
+	나이코드
+	}
+}
+class TodayService implement Parent {
+	@Override
+	public String execute(request, response) {
+	오늘날짜코드
+	}
+} 
+
+
+ActionForward란 	Action이 모든 작업을 끝내고 view해줄 페이지의 경로를 지정하는 것
+			Forward가 들어간다해서 redirect가 안되는건 아니다.
+			요청과 응답을 다른 리소스로 전달, path는 GET방식이라고 한다.
+ 
+Request란 브라우저에서 jsp로 넘어오는 정보 모임
+
+
+
+
+
+	 
+	  
