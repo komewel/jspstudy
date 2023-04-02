@@ -28,7 +28,7 @@
 	 
 	
 	<c:set var="age" value="46" scope="page"></c:set>
-	<c:set var="isAlive" value="${age <= 100}" scope="page"></c:set>
+	<c:set var="isAlive" value="${(age <= 100) ? '살았다' : '죽었다'}" scope="page"></c:set>
 	<c:set var="height" value="1.86" scope="page"></c:set>
 	<c:set var="weight" value="99" scope="page"></c:set>
 	<c:set var="bmi" value="${weight div (height * height)}" scope="page"></c:set>
@@ -39,7 +39,7 @@
 	
 	<ul>
 		<li>나이 : ${age}살</li>
-		<li>생존 : ${isAlive ? '살았다' : '죽었다'}</li>
+		<li>생존 : ${isAlive}</li>
 		<li>bmi지수  : ${bmi}</li>
 		<li>건강상태 : ${health}</li>
 	</ul>

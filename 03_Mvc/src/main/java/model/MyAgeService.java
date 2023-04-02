@@ -24,8 +24,10 @@ public class MyAgeService implements MyService {
 		actionForward.setPath("view/output.jsp");
 		actionForward.setRedirect(false);  // forward
 		return actionForward;
-		
 	}
+	
+	
+	
 
 }
 

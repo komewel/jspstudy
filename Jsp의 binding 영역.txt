@@ -1,0 +1,53 @@
+map은 객체를 대신해서 사용하는데 
+<엔트리> = <value, key> 이라고 이해하고 
+
+map<value 타입 선언, key 타입 선언> 변수명 = new HashMap<>
+
+.put으로 데이터를 집어 넣고 	     변수명.put("value값", "key값")
+.get으로 데이터를 꺼낸다			변수명.get("value값")
+.remove로 데이터를 삭제한다		변수명.remove("value값")
+
+List<<map<value, key>> 리스트명 = new ArrayList<>();\
+
+이렇게 리스트 형식으로 맵 자체를 저장시킬수 있다
+.add로 맵을 저장시킬수 있다
+
+Jsp의 binding 영역, 브라우저에서 jsp에 넘어오는 정보 모임
+			 저장하는곳이 다르니까 변수이름이 같아도 값이 겹치지 않는다 불러오는 순서도 아래 그대로다
+
+PageContext 는 현재페이지의 한해서 저장된다
+request는 한번의 요청에 응할수 있다
+session은 브라우저 창이 종료될 때 까지 저장데이터가 남아있다
+application 은 서버가 종료될때까지 저장데이터가 남아있다 
+
+.setAttribute("변수", 값) 데이터를 저장할때
+.getAttribute("변수")     데이터를 불러올때
+
+<% %> jsp에서 구현되는 java 코드 부분이다 서버에서 구동된다.
+
+el기능이라고 binding에 저장된 값을 불러올 수 있다
+형식은 ${}, 연산자도 인식한다
+
+jstl은 라이브러리 일종중에 하나인데 
+<c:set var="변수명" value="값또는  함수" scope="웬만하면 page" />
+c:set 문 안에 값을 따로 집어 넣으면 어떨지 궁금
+<c:if test= 이건 학원가서 테스트 연산자가  el문 안에서 먹는건지 따로 해도 먹는건지
+c:if문은 else를 지원 안하기 때문에 딱 하나의 값이 지원을 못한다, 대신 and 조건을 지원한다, 하지만
+이 c:if 문을 대체하는 c:when이 존재한다.
+
+<script src=<c:url value="이동하고 싶은 주소" <c:param name="파라미터명" value="값"> />
+이런식으로 jstl에서는 <c:url>태그로 스크립트 태그에 주소랑 <c:param> 태그로 파라미터까지 붙여서 보낼수 있다.
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:redirect url="/ex07_jstl/core/05_redirect2.jsp" context="${contextPath}">
+	<c:param name="age" value="46"/>
+</c:redirect>
+jstl로 리다이렉트까지 시켜줄 수 있다.
+
+<c:foreach> jstl에서 쓰이는 반복문이라 생각하면 된다 
+06foreach문 잘 살펴보자
+fmt나 fn도
+
+
+
+ 
