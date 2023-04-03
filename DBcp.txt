@@ -1,0 +1,63 @@
+lombok
+오라클 사용을 위해 ojdbc
+태그 라이브러리
+data source explorer, database connection 아래 GDJ61 없으면 오라클 켜서 따로 작업하면 됨 ( 따로 켜서 작업 안하고 싶어서 확인하는거임)
+
+webapp에서 sqlfile 만들때 database server type 을 oracle_11로 설정
+아래 GDJ61 없으면 그냥 확인
+
+데이터가 넘칠거 같으면 사이즈 지정안하고 뒤에 CLOB이라고 적으면 된다
+
+미리 데이터를 넣어놓고 확인한다(jsp)
+
+-----------------------------------------------------------------
+서버에 context.xml 수정하는법 알아보기
+context.xml 에서 maxWait="-1" 모든 커넥션이 사용중이더라도 제한없이
+대기를 탐
+
+maxTotal="8" 커넥션 갯수
+-----------------------------------------------------------------
+
+테이블 칼럼5개를 읽어들일수있는 bean파일을 domain(bean파일을 모아두는곳,
+VO나 DTO를 모아둔다해서 패키지이름이 아예 VO DTO로 만들어질수도 있다)
+에 만들거다, 정해진건 없다(그렇지만 틀을 크게 벗어나진 않아서 예상 가능하다)
+domain 클래스 이름을 board('', 'VO', 'DTO') 등등 자주 볼거다 
+
+domain아래 bean파일 필드를 데이터베이스 칼럼과 1대1로 매칭시켜주어야 한다.
+
+인터페이스 파일 앞에 I(인터페이스를 뜻하는, 언어의 따라서 붙여야 할때도 있기
+때문에) 붙이자 약속 
+
+사용자(뷰) - 서비스           -  영속(Persistance)     - DB
+
+jsp 	 -	IBoardService - BoardDAO(Data Access Object)
+ 
+	(삽입 수정 등등 이런 메소드들을 만들어서 저장하는것) 
+
+서비스기능(사용자 친화)     서비스기능(DB친화)
+BoardListService 	 List<BoardDTO> selectBoardList()BoardDetailService BoardDTO selectBoardByNo(int board_no)
+BoardAddService    int insertBoard(BoardDTO board,게시글하나를의미)
+BoardModifyService = int updateBoard(BoardDTO board)
+BoardRemoveService = int deleteBoard(int board_no)
+
+DAO는 데이터베이스의 접근하기 위한 객체(ACCESE)
+DTO는 순수하게 데이터를 가지고 교환만 해주는 객체(transfer)
+
+common 파일에는 ActionForward 생성을
+
+service파일에는 ActionForward 기능을 객체화할 인터페이스와
+       상속받아서 각종 서비스 구현을 위한 파일
+	
+controller파일에는 각종서비스를 어떤 방식으로 구현할지를 위한 코드를
+
+index.jsp가 요청 -> compiler -> service -> DAO
+주소로 요청 -> 컨트롤러가 해당 주소값을 해당서비스(보드리스트서비스)와 연결
+-> 서비스는 DB와 연결시켜주는 다오와 연결(메소드호출) -> 이제 DAO가 일을시작
+		
+
+
+
+
+	
+
+		

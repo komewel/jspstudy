@@ -16,7 +16,7 @@
 		// 다시 로그인 폼으로 돌아가기
 		response.sendRedirect(request.getContextPath() + "/ex04_session/login/01_form.jsp");
 
-		%>
+	%>
 
 </body>
 </html>

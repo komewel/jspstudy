@@ -1,5 +1,6 @@
 package common;
 
+
 public class ActionForward {
 
 	private String path;         // 응답 경로(Jsp 이름)
@@ -19,3 +20,5 @@ public class ActionForward {
 	}
 	
 }
+
+

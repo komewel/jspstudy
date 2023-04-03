@@ -31,7 +31,7 @@
 	 
 	 <%-- if랑 다르게 and 조건이 따로 필요없이 깔끔하게 나온다 --%>
 	 
-	 <c:set var="age" value="20" scope="page"></c:set>
+	 <c:set var="age" value="20" scope="page">31</c:set>
 	 <c:choose>
 	 	<c:when test="${age <= 7}">
 	 		<c:set var="result" value="미취학아동" scope="page"></c:set>
