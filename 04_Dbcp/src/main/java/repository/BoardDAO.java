@@ -116,26 +116,140 @@ public class BoardDAO {
 	}
 	
 	// 게시글 반환하기
-	public BoardDAO selectBoardByNo(int board_no) {
+	public BoardDTO selectBoardByNo(int board_no) {
 		
-		return null;
+		// 1. 반환할 BoardDTO board 선언
+		BoardDTO board = null;
+		
+		try {
+			// 2. DataSource로부터 Connection 얻어 오기
+			con = dataSource.getConnection();
+			
+			// 3. 실행할 쿼리문
+			sql = "SELECT BOARD_NO, TITLE, CONTENT, MODIFIED_DATE, CREATED_DATE FROM BOARD WHERE BOARD_NO = ?"; 
+			
+			// 4. 쿼리문을 실행할 PreparedStatement 객체 생성
+			ps = con.prepareStatement(sql);
+			
+			// 5. 쿼리문에 변수 값 전달하기
+			ps.setInt(1, board_no);
+			
+			// 6. PreparedStatement 객체를 이용해 쿼리문 실행(SELECT문 실행은 executeQuery 메소드로 한다.
+			rs = ps.executeQuery(); 
+			
+			// 7. ResultSet 객체(결과 집합)를 이용해서 BoardDTO만듦
+			if(rs.next()) {
+				
+				// step1. board 테이블의 결과 행(ROW)을 읽는다.
+				String title = rs.getString("TITLE");
+				String content = rs.getString("CONTENT");
+				Date modified_date = rs.getDate("MODIFIED_DATE");
+				Date created_date = rs.getDate("CREATED_DATE");
+				
+				// step2. 읽은 정보를 이용해서 BoardDTO 객체를 만든다.
+				board = new BoardDTO(board_no, title, content, modified_date, created_date);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(); 
+		}
+			
+		// 8. 조회된 게시글 BoardDTO board 반환
+		return board;
 	}
 	
 	// 게시글 삽입하기
-	public int insertBoard(BoardDAO board) {
+	public int insertBoard(BoardDTO board) {
 		
-		return 0;
+		 // 1. 삽입 결과 변수 선언
+		int insertResult = 0;
+		
+		try {
+			
+			con = dataSource.getConnection();
+			
+			sql = "INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL, ?, ?, NULL, SYSDATE)"; // ? 처리는 변수 처리 sql과 자바에서 변수 처리를 위한 
+					
+			ps = con.prepareStatement(sql);	
+			
+			// 쿼리문에 변수 값 전달하기
+			ps.setString(1, board.getTitle());   // 1번째 물음표(?)(=변수)에 title 전달하기
+			ps.setString(2, board.getContent()); // 1번째 물음표(?)(=변수)에 content 전달하기
+			
+			// SELECT와달리 INSERT는 executeUpdate() 라는 메소드가 처리해준다
+			
+			insertResult = ps.executeUpdate(); // 0아니면1이 나온다
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally{
+		 close();
+		}
+		return insertResult; // 0 아니면 1을 반환한다
 	}
 	
 	// 게시글 수정하기
 	public int updateBoard(BoardDTO board) {
 		
-		return 0;
+		// 1. 수정 결과 변수 선언
+		int updateResult = 0;
+		
+		try {
+			
+			// 2. DataSource로부터 Connection 얻어 오기
+			con = dataSource.getConnection();
+			
+			// 3. 실행할 쿼리문
+			sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ?, MODIFIED_DATE = SYSDATE WHERE BOARD_NO = ?";
+			
+			// 4. 쿼리문을 실행할 PreparedStatement 객체 생성
+			ps = con.prepareStatement(sql);
+			
+			// 5. 쿼리문에 변수 값 전달하기
+			ps.setString(1, board.getTitle());   // 1번째 물음표(?)에 title 전달하기
+			ps.setString(2, board.getContent()); // 2번째 물음표(?)에 content 전달하기
+			ps.setInt(3, board.getBoard_no());   // 3번째 물음표(?)에 board_no 전달하기
+			
+			// 6. PreparedStatement 객체를 이용해 쿼리문 실행(UPDATE문 실행은 executeUpdate 메소드로 한다.)
+			updateResult = ps.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 예외 발생 여부와 상관 없이 항상 자원의 반납을 해야 한다.
+			close();
+		}
+		
+		// 7. 수정 결과 반환
+		return updateResult;
+		
 	}
 	
 	// 게시글 삭제하기
 	public int deleteBoard(int board_no) {
 		
-		return 0;
+		int deleteResult = 0;
+		
+		try {
+			
+			con = dataSource.getConnection();
+			
+			sql = "DELETE FROM BOARD WHERE BOARD_NO = ?"; // ? 처리는 변수 처리 sql과 자바에서 변수 처리를 위한 
+					
+			ps = con.prepareStatement(sql);	
+			
+			// 쿼리문에 변수 값 전달하기
+			ps.setInt(1, board_no);   // 1번째 물음표(?)(=변수)에 board_no 전달하기
+			
+			// SELECT와달리 INSERT는 executeUpdate() 라는 메소드가 처리해준다
+			deleteResult = ps.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally{
+		 close();
+		}
+		return deleteResult;
+		
 	}
 }

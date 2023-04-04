@@ -39,7 +39,7 @@ public class BoardController extends HttpServlet {
 		// ActionForward
 		ActionForward af = null;
 		
-		// URLMapping에 따른 서비스 생성, 이런요청이 들어오면 service에 이 경로(서비스)로 인도하겠다.
+		// URLMapping에 따른 서비스 생성, 이런요청이 들어오면 service에 이 경로(서비스)로 인도하겠다, 고르기만 함
 		switch(urlMapping) {
 		case "/getAllBoardList.do" :
 			service = new BoardListService();
@@ -61,9 +61,9 @@ public class BoardController extends HttpServlet {
 			break;
 		}
 	
-		// 서비스 실행, null이아니면 실행되는것이므로 
+		// 서비스 실행, null이아니면 실행되는것이므로,   
 		if(service != null) {
-			af = service.execute(request, response);
+			af = service.execute(request, response); // 콘트롤러가 request를 받은 후에 여기서 다시 서비스로 보내준다 
 			}
 		
 		// 응답View로 이동, nullpointerException을 받는다.

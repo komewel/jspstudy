@@ -37,7 +37,7 @@
 
 	<div>
 		<h1>게시글 작성</h1>
-		<form action="frm_write" method="post" action="${contextPath}/addBoard.do">
+		<form id="frm_write" method="post" action="${contextPath}/addBoard.do">
 			<div>
 				<label for="title">제목</label>
 				<input type="text" id="title" name="title">
@@ -52,6 +52,5 @@
 			</div>
 		</form>
 	</div>
-	
+
 </body>
-</html>

@@ -20,8 +20,8 @@
 	 --%>
 	   
 	<%-- 자바코드를 사용하기 싫어서 최종적으로 쓰는게 <c:set>, 자바에서 쓰던걸 태그화 EL화해서 자바 요소를 모두 없애는 과정이였다, 지양하는 과정 --%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
-	<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="page"/>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="page" />
 	<a href="${contextPath}/getAllBoardList.do">게시판</a>
 	
 	<%-- <a href="<c:url value="/getAllBoardList.do" />">게시판</a> --%>
