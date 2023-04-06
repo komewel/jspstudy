@@ -1,0 +1,4 @@
+ajax 할때는 JSON을 사용함
+한페이지에서 작업을 모두 처리해주게 해준다
+
+ajax는 페이지 이동이 없기 때문에 ActionForward를 안쓴다 고로 common파일이 없다

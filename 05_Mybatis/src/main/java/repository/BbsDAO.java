@@ -85,6 +85,5 @@ public class BbsDAO {
 		ss.close();
 		return deleteResult;
 	}
-	// 쿼리문들도 여기서 메소드랑 같게 생각하면 편하다
 	
 }
