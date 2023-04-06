@@ -24,7 +24,7 @@ db에서 select는 forward를 이용
 	진정한 의미의 mvc패턴이다.)
 
 mvc는 3가지 형태로 구분하여 개발하는 방법이다(application은 저장하는 방법 중에 하나인데 서버가 끝나야지만 즉 아예 모든게
-끝나야지만 사라지는 저장 방법이다, 구동할때는 프로젝트 자체를 run 시킨다 이걸로 미루어 보아 기능이 합쳐지는거다 ) 
+끝나야지만 사라지는 저장 방법이다, 구동할때는 프로젝트 자체를 run 시킨다 이걸로 미루어 보아 기능이 합쳐지는거다, 따로 실행시 하나만 구현되더라) 
 
 model은 어플리케이션이 *무엇을* 할것인지를 정의한다.
 
@@ -43,29 +43,10 @@ view 는 		  *화면에 무엇인가* 를 보여주기 위한 역할을 합니�
 하나의 메소드로 다수의 기능을 구현할 수 있다.
 본문이 없는 이름만 있는 껍데기만 있는 메소드라서 
 조건식으로 if나 switch를 써서 따로 본문만 추가시켜서 여러가지 기능을 구현할 수 있다.
-Parent service = new AgeService();
-Parent service = new TodayService();
 
-interface Parent {
-	public String execute(request, response); // 추상메소드: 본문이 없는 메소드
-}
-class AgeService implement Parent{
-	@Override
-	public String execute (request, response) { // 부모 메소드를 불러와서 본문을 따로 작성
-	나이코드
-	}
-}
-class TodayService implement Parent {
-	@Override
-	public String execute(request, response) {
-	오늘날짜코드
-	}
-} 
-
-
-ActionForward란 	Action이 모든 작업을 끝내고 view해줄 페이지의 경로를 지정하는 것
+ActionForward란 	Action이 모든 작업을 끝내고 view해줄 페이지의 경로를 지			정하는 것
 			Forward가 들어간다해서 redirect가 안되는건 아니다.
-			요청과 응답을 다른 리소스로 전달, path는 GET방식이라고 한다.
+			요청과 응답을 다른 리소스로 전달, path는 GET방식이라고 			한다.
  
 Request란 브라우저에서 jsp로 넘어오는 정보 모임
 

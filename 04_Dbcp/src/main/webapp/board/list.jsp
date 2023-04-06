@@ -20,7 +20,7 @@
 			location.href = '${contextPath}/writeBoard.do';
 		})
 		// 삭제 링크 클릭, 삭제 클릭한걸 하나 선택하기 위해 this가 유용하게 쓰인다 판별하기 위해
-		$('.link_remove').on('click', function(event){
+		$('.link_remove').on('click', function(event){ // event객체를 쓰므로 event.preventDefault()를 쓸수 있는듯
 			if(confirm('삭제할까요?') == false){ // false, 취소를 눌렀다면
 				event.preventDefault(); // <button> 태그의 기본 동작은 submit 속성의 동작을 막는다, 클릭을 했음에도 링크이동을 안한다
 				return;

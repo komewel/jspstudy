@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace에는 확장자는 빼야한다 아님 패키지로 인식한다 -->
+  <!-- namespace는 mybatis.mapper.bbs.xml 파일을 의미한다. -->
+<mapper namespace="mybatis.mapper.bbs">
+
+	<!-- 목록 -->
+	<select id="selectAllBbsList" resultType="Bbs"> <!-- 결과가 arrayList여도 --> 
+		SELECT BBS_NO, TITLE, CONTENT, MODIFIED_DATE, CREATED_DATE
+		  FROM BBS
+		 ORDER BY BBS_NO DESC
+	</select>
+	
+	<!-- 상세 -->
+	<select id="selectBbsByNo" parameterType="int" resultType="Bbs">
+		SELECT BBS_NO, TITLE, CONTENT, MODIFIED_DATE, CREATED_DATE
+		  FROM BBS
+		 WHERE BBS_NO = #{bbsNo} <!-- bbsNo라는 변수명을 가진 매개변수가 여기 들어간다고 보면 된다(JDBC에서는 ? 처리되었다) -->
+	</select>
+	
+	<!-- 삽입 -->
+	<insert id="insertBbs" parameterType="Bbs"> <!-- 트랜잭션(insert delete update)는 resulttype을 따로 설정할 필요가 없다 -->
+		INSERT INTO BBS
+			(BBS_NO, TITLE, CONTENT, CREATED_DATE)
+		VALUES
+			(BBS_SEQ.NEXTVAL, #{title}, #{content}, TO_CHAR(SYSDATE, 'yy.MM.dd HH:mm:ss'))
+			<!-- INSERT할 대상에만 값을 넣어주면 된다
+				객체를 전달해주면 필드값을 알아서 mybatis가 뽑아준다 getter로 뽑아주는거다
+				단어 앞을 소문자로 해주는이유가 제대로 안정해주면 지 맘대로 대문자 형식으로 찾는다 -->	
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="updateBbs" parameterType="Bbs">
+		UPDATE BBS
+		   SET TITLE = #{title}
+		     , CONTENT = #{content}
+		     , MODIFIED_DATE = TO_CHAR(SYSDATE, 'yy.MM.dd HH:mm:ss')
+		 WHERE BBS_NO = #{bbsNo}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteBbs" parameterType="int">
+		DELETE
+		  FROM BBS
+		 WHERE BBS_NO = #{bbsNo}
+	</delete>
+
+</mapper>
