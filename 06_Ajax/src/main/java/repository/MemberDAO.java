@@ -92,4 +92,8 @@ public class MemberDAO {
 		return deleteResult;
 	}
 	
+
+	
 }
+
+// ajax는 페이지이동(한페이지에서 다 처리를 완료한 상태)이 없기 때문에 속도가 빠르다 (ex,관리자기능), 하나의 페이지에서 화면만 계속 바꾸려면 자바스크립트 밖에 없다.
