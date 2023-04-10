@@ -154,7 +154,7 @@
 
       	
       
-      <Context docBase="06_Ajax" path="/06_Ajax" reloadable="true" source="org.eclipse.jst.jee.server:06_Ajax"/></Host>
+      <Context docBase="05_Mybatis_Practice2" path="/05_Mybatis_Practice2" reloadable="true" source="org.eclipse.jst.jee.server:05_Mybatis_Practice2"/></Host>
     </Engine>
   </Service>
 </Server>
