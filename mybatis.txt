@@ -1,0 +1,33 @@
+
+
+
+mybatis 파일  git.ignore에 등록해서 깃에 안올리려고 그러는거임
+property파일을 만들어야 하는데 property파일이 따로 없어서 untitle 파일로
+만들어 놓고 
+driverClassName=oracle.jdbc.OracleDriver
+url=jdbc:oracle:thin:@localhost:1521:xe
+username=GDJ61
+password=1111
+등록해서 
+mybatis -> config -> db.properties로 이름 설정해서 저장한다
+
+mybatis.org 접속 프로덕트 들어가서 docs 들어간 다음에 시작하기 옆에 목록 
+들어가서 xml 코드 복사해서 똑같은 곳에 저장한다 
+
+서로 파일을 변수를 같은 이름으로 설정해서 el태그가 먹히는 이유가 여기 있넹
+
+mybatis.org 접속 프로덕트 들어가서 docs 매퍼 설정
+mapUnderscoreToCamelCase 이기능이 필요한데
+파라미터에 번호 변수설정 따로 안해도 이기능이 따로 다 해준다
+
+typeAliases 기능은 타이핑을 줄여주는 기능이다 
+		변수 설정 하듯이 별명을 설정하여 간편하게 쓰는 기능
+
+
+메이븐레파지토리 들어가서 junit 검색 두번째 클릭 가장 최근 파일 jar 다운
+
+코드가 써있는 부분이 더 좋은 부분인데 MAVEN프로젝트에서만 사용할 수 있다
+
+Compile Dependencies
+이거 아래 있는거 의미는 이게 없으면 구동을 못해요라는뜻
+이걸 통해서 hamcrest-core도 같이 다운받으면 되용
